@@ -5,14 +5,12 @@ const path = require('path');
  * Get metadata of all files inside a folder
  * @param {String} folderPath 
  * @return {Array}
- * [{
- *   path: '',
- *   mtime: '',
- *   size: '',
- * }]
+ * {
+ *   'node_modules/a.js': 234235234235,
+ * }
  */
 module.exports = async (folderPath) => {
-  const fileList = [];
+  const fileMap = {};
 
   const getAllPaths = async (dir) => {
     const dirList = await fs.readdir(dir);
@@ -21,11 +19,7 @@ module.exports = async (folderPath) => {
       const fileStat = await fs.stat(currentPath);
 
       if (fileStat.isFile()) {
-        fileList.push({
-          path: currentPath,
-          mtime: fileStat.mtime,
-          size: fileStat.size,
-        });
+        fileMap[currentPath] = fileStat.mtimeMs;
       }
 
       if (fileStat.isDirectory()) {
@@ -38,5 +32,5 @@ module.exports = async (folderPath) => {
 
 	await getAllPaths(folderPath);
 
-  return fileList; 
+  return fileMap; 
 }
