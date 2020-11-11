@@ -10,7 +10,7 @@ const getFileMap = require('./getFileMap');
    * File count: 62,606
    * Time cost: 
    *   - MacBook Pro (16-inch, 2019, 32GB, i7): 980 ~ 1041 ms
-   *   - 
+   *   - MacBook Pro (13-inch, 2015, 8GB, i5): 1289 ~ 1851 ms
    * File List size: 7278686 Bytes
    */
   const folderPath = '../platform-cn';
@@ -29,7 +29,7 @@ const getFileMap = require('./getFileMap');
    * File count: 62,606
    * Time cost: 
    *   - MacBook Pro (16-inch, 2019, 32GB, i7): 1047 ~ 1083 ms
-   *   - 
+   *   - MacBook Pro (13-inch, 2015, 8GB, i5): 1351 ~ 1756 ms
    * File List size: 4911281 Bytes
    */
   console.time('getFileMap');
