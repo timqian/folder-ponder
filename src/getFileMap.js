@@ -1,5 +1,6 @@
 const fs = require('fs').promises;
 const path = require('path');
+const hash = require('hash');
 
 /**
  * Get metadata of all files inside a folder
@@ -19,7 +20,7 @@ module.exports = async (folderPath) => {
       const fileStat = await fs.stat(currentPath);
 
       if (fileStat.isFile()) {
-        fileMap[currentPath] = fileStat.mtimeMs;
+        fileMap[path.relative(folderPath, currentPath)] =  await hash.fromFile(currentPath, {algorithm: 'sha1'});
       }
 
       if (fileStat.isDirectory()) {
